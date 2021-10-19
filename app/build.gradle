@@ -1,0 +1,122 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id 'kotlin-parcelize'
+}
+
+android {
+    compileSdk 31
+    buildToolsVersion "31.0.0"
+
+    defaultConfig {
+        applicationId "com.yeyq.weather"
+        minSdk 23
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        testOptions {
+            unitTests.all {
+                useJUnitPlatform()
+            }
+            unitTests.returnDefaultValues = true
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        dataBinding true
+    }
+}
+
+ext {
+    appCompatVersion = "1.3.1"
+    coreKtxVersion = "1.6.0"
+    constraintLayoutVersion = "2.1.1"
+    materialVersion = "1.4.0"
+    recyclerviewVersion = "1.2.1"
+    glideVersion = "4.12.0"
+    cardviewVersion = "1.0.0"
+    navigationVersion = "2.3.0"
+    daggerVersion = "2.28"
+    retroFitVersion = "2.6.0"
+    lifeCycleVersion = "2.2.0"
+    navigationVersion = "2.3.5"
+    hiltDaggerVersion = "2.38.1"
+    hiltLifeCycleVersion = "1.0.0-alpha03"
+    coroutinesVersion = "1.5.1"
+    lifecycleVersion = "2.3.1"
+    liveEventVersion = "1.2.0"
+    retrofitVersion = "2.9.0"
+    okhttpVersion = "4.9.1"
+    lottieVersion = '3.5.0'
+
+    junitVersion = "5.7.2"
+    mockkVersion = "1.12.0"
+    kluentVersion = "1.67"
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    implementation "androidx.appcompat:appcompat:$appCompatVersion"
+    implementation "androidx.core:core-ktx:$coreKtxVersion"
+
+    implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+    implementation "com.google.android.material:material:$materialVersion"
+    implementation "androidx.recyclerview:recyclerview:$recyclerviewVersion"
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    implementation "androidx.cardview:cardview:$cardviewVersion"
+
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
+
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
+
+    implementation "com.google.dagger:hilt-android:$hiltDaggerVersion"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hiltLifeCycleVersion"
+    kapt "com.google.dagger:hilt-android-compiler:$hiltDaggerVersion"
+    kapt "androidx.hilt:hilt-compiler:$hiltLifeCycleVersion"
+
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion"
+    implementation "com.github.hadilq.liveevent:liveevent:$liveEventVersion"
+
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.okhttp3:okhttp:$okhttpVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
+
+    implementation "com.airbnb.android:lottie:$lottieVersion"
+
+    testImplementation "org.junit.jupiter:junit-jupiter"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
+    testImplementation "org.junit.jupiter:junit-jupiter-params:$junitVersion"
+    testImplementation "io.mockk:mockk:$mockkVersion"
+    testImplementation "org.amshove.kluent:kluent:$kluentVersion"
+
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+}

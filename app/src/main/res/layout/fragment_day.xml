@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.yeyq.weather.features.dayDetails.presentation.DayDetailsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".features.episodes.details.presentation.EpisodeDetailsFragment">
+
+        <TextView
+            android:id="@+id/day_details_date"
+            style="@style/SmallText"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
+            android:text="@{viewModel.day.date}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Tuesday, 24-10-2017" />
+
+        <TextView
+            android:id="@+id/day_details_city"
+            style="@style/MediumText"
+            android:layout_marginStart="@dimen/default_margin"
+            android:text="@{viewModel.day.cityName}"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/day_details_description"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="London" />
+
+        <TextView
+            android:id="@+id/day_details_temperature_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:text="@{viewModel.day.temperatureDay}"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/big_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/day_details_date"
+            tools:text="13°C" />
+
+        <ImageView
+            android:id="@+id/day_details_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="@dimen/default_margin"
+            app:imageUrl="@{viewModel.day.iconUrl}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/day_details_temperature_day"
+            tools:ignore="ContentDescription"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/day_details_description"
+            style="@style/SmallText"
+            android:text="@{viewModel.day.description}"
+            app:layout_constraintBottom_toBottomOf="@+id/day_details_icon"
+            app:layout_constraintEnd_toStartOf="@+id/day_details_icon"
+            app:layout_constraintTop_toTopOf="@+id/day_details_icon"
+            tools:text="few clouds" />
+
+        <ImageView
+            android:id="@+id/day_details_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="@dimen/default_margin"
+            app:layout_constraintTop_toBottomOf="@+id/day_details_description"
+            app:srcCompat="@color/gray"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/day_details_temperature_min_label"
+            style="@style/SmallText"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="@dimen/top_margin"
+            android:text="@string/temp_min"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/day_details_divider" />
+
+        <TextView
+            android:id="@+id/day_details_temperature_max_label"
+            style="@style/SmallText"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
+            android:text="@string/temp_max"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/day_details_temperature_min_label" />
+
+        <TextView
+            android:id="@+id/day_details_pressure_label"
+            style="@style/SmallText"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
+            android:text="@string/pressure"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/day_details_temperature_max_label" />
+
+        <TextView
+            android:id="@+id/day_details_wind_label"
+            style="@style/SmallText"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
+            android:text="@string/wind_speed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/day_details_pressure_label" />
+
+
+        <TextView
+            android:id="@+id/day_details_temperature_min"
+            style="@style/BlueSmallText"
+            android:layout_marginStart="32dp"
+            android:text="@{viewModel.day.temperatureMin}"
+            app:layout_constraintLeft_toRightOf="@id/day_details_temperature_min_label"
+            app:layout_constraintTop_toTopOf="@+id/day_details_temperature_min_label"
+            tools:text="10°C" />
+
+        <TextView
+            android:id="@+id/day_details_temperature_max"
+            style="@style/BlueSmallText"
+            android:text="@{viewModel.day.temperatureMax}"
+            app:layout_constraintStart_toStartOf="@+id/day_details_temperature_min"
+            app:layout_constraintTop_toTopOf="@+id/day_details_temperature_max_label"
+            tools:text="10°C" />
+
+        <TextView
+            android:id="@+id/day_details_pressure"
+            style="@style/BlueSmallText"
+            android:text="@{viewModel.day.pressure}"
+            app:layout_constraintStart_toStartOf="@+id/day_details_temperature_min"
+            app:layout_constraintTop_toTopOf="@+id/day_details_pressure_label"
+            tools:text="1017 hPa" />
+
+        <TextView
+            android:id="@+id/day_details_wind"
+            style="@style/BlueSmallText"
+            android:text="@{viewModel.day.windSpeed}"
+            app:layout_constraintStart_toStartOf="@+id/day_details_temperature_min"
+            app:layout_constraintTop_toTopOf="@+id/day_details_wind_label"
+            tools:text="10 m/s" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

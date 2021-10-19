@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.yeyq.weather.features.city.presentation.CityViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".features.city.presentation.CityFragment">
+
+        <TextView
+            android:id="@+id/city_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin"
+            android:text="@{viewModel.city.name}"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/big_text"
+            app:layout_constraintEnd_toStartOf="@+id/city_average_label"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Moscow" />
+
+        <TextView
+            android:id="@+id/city_average_label"
+            style="@style/SmallText"
+            android:layout_marginStart="4dp"
+            android:layout_marginBottom="6dp"
+            android:text="@string/average_temperature"
+            app:layout_constraintBottom_toBottomOf="@+id/city_name"
+            app:layout_constraintEnd_toStartOf="@+id/city_average"
+            app:layout_constraintStart_toEndOf="@+id/city_name"
+            app:showOnIdleState="@{viewModel.uiState}" />
+
+        <TextView
+            android:id="@+id/city_average"
+            style="@style/BlueSmallText"
+            android:layout_marginStart="4dp"
+            android:layout_marginBottom="6dp"
+            android:text="@{viewModel.city.temperatureAverage}"
+            app:layout_constraintBottom_toBottomOf="@+id/city_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/city_average_label"
+            tools:text="10°C" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/loading_animation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="loading.json"
+            app:lottie_loop="true"
+            app:showOnPendingState="@{viewModel.uiState}" />
+
+        <ImageView
+            android:id="@+id/error_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:showOnErrorState="@{viewModel.uiState}"
+            app:srcCompat="@drawable/went_wrong"
+            tools:ignore="ContentDescription"
+            tools:visibility="gone" />
+
+        <TextView
+            android:id="@+id/error_text"
+            style="@style/MediumText"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="@dimen/default_margin"
+            android:text="@string/error_unknown"
+            app:layout_constraintEnd_toEndOf="@+id/error_image"
+            app:layout_constraintStart_toStartOf="@+id/error_image"
+            app:layout_constraintTop_toBottomOf="@+id/error_image"
+            app:showOnErrorState="@{viewModel.uiState}"
+            tools:visibility="gone" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/default_margin"
+            app:items="@{viewModel.city.days}"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/city_average"
+            app:spanCount="2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
